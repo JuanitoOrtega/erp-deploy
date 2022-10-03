@@ -14,9 +14,9 @@ SQLITE = {
 POSTGRESQL = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db',
-        'USER': 'postgres',
-        'PASSWORD': '123',
+        'NAME': 'erp-deploy',
+        'USER': 'juanitodev',
+        # 'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
         'ATOMIC_REQUESTS': True
