@@ -12,13 +12,13 @@ function format(d) {
     html += '</thead>';
     html += '<tbody>';
     $.each(d.det, function (key, value) {
-        html+='<tr>'
-        html+='<td>'+value.prod.name+'</td>'
-        html+='<td>'+value.prod.cat.name+'</td>'
-        html+='<td>'+value.price+'</td>'
-        html+='<td>'+value.cant+'</td>'
-        html+='<td>'+value.subtotal+'</td>'
-        html+='</tr>';
+        html += '<tr>'
+        html += '<td>' + value.prod.name + '</td>'
+        html += '<td>' + value.prod.cat.name + '</td>'
+        html += '<td>' + value.price + '</td>'
+        html += '<td>' + value.cant + '</td>'
+        html += '<td>' + value.subtotal + '</td>'
+        html += '</tr>';
     });
     html += '</tbody>';
     return html;
@@ -38,7 +38,10 @@ $(function () {
             data: {
                 'action': 'searchdata'
             },
-            dataSrc: ""
+            dataSrc: "",
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
         },
         columns: [
             {
@@ -71,7 +74,7 @@ $(function () {
                     var buttons = '<a href="/erp/sale/delete/' + row.id + '/" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a> ';
                     buttons += '<a href="/erp/sale/update/' + row.id + '/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
                     buttons += '<a rel="details" class="btn btn-success btn-xs btn-flat"><i class="fas fa-search"></i></a> ';
-                    buttons += '<a href="/erp/sale/invoice/pdf/'+row.id+'/" target="_blank" class="btn btn-info btn-xs btn-flat"><i class="fas fa-file-pdf"></i></a> ';
+                    buttons += '<a href="/erp/sale/invoice/pdf/' + row.id + '/" target="_blank" class="btn btn-info btn-xs btn-flat"><i class="fas fa-file-pdf"></i></a> ';
                     return buttons;
                 }
             },

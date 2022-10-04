@@ -10,7 +10,10 @@ $(function () {
             data: {
                 'action': 'searchdata'
             },
-            dataSrc: ""
+            dataSrc: "",
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
         },
         columns: [
             {"data": "id"},
@@ -27,7 +30,7 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return '<img src="'+data+'" class="img-fluid d-block mx-auto" style="width: 20px; height: 20px;">';
+                    return '<img src="' + data + '" class="img-fluid d-block mx-auto" style="width: 20px; height: 20px;">';
                 }
             },
             {
@@ -35,10 +38,10 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    if(row.stock > 0){
-                        return '<span class="badge badge-success">'+data+'</span>'
+                    if (row.stock > 0) {
+                        return '<span class="badge badge-success">' + data + '</span>'
                     }
-                    return '<span class="badge badge-danger">'+data+'</span>'
+                    return '<span class="badge badge-danger">' + data + '</span>'
                 }
             },
             {
@@ -46,7 +49,7 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return '$'+parseFloat(data).toFixed(2);
+                    return '$' + parseFloat(data).toFixed(2);
                 }
             },
             {

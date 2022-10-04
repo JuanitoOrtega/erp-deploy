@@ -218,6 +218,9 @@
                     'action': 'get_graph_sales_year_month'
                 },
                 dataType: 'json',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
             }).done(function (data) {
                 if (!data.hasOwnProperty('error')) {
                     graphcolumn.addSeries(data);
@@ -239,6 +242,9 @@
                     'action': 'get_graph_sales_products_year_month'
                 },
                 dataType: 'json',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
             }).done(function (data) {
                 if (!data.hasOwnProperty('error')) {
                     graphpie.addSeries(data);

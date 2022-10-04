@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+-q801b67uu&j)5jt*tc)7d#58^(r2pvacn=mxm12khm^)1p2u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -143,14 +143,11 @@ AUTH_USER_MODEL = 'user.User'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
-# Email
-
+# Configuración para enviar correos
 EMAIL_HOST = 'smtp.gmail.com'
-
 EMAIL_PORT = 587
-
-EMAIL_HOST_USER = 'djangologin99@gmail.com'
-
-EMAIL_HOST_PASSWORD = '0m4gATi3rr@'
+EMAIL_HOST_USER = 'ortegaj83@gmail.com'
+EMAIL_HOST_PASSWORD = 'telqoxvxatxxhmmj'
+EMAIL_USE_TLS = True
 
 DOMAIN = ''

@@ -3,7 +3,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from core.erp.forms import ProductForm
@@ -14,11 +13,7 @@ from core.erp.models import Product
 class ProductListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = Product
     template_name = 'product/list.html'
-    permission_required = 'view_product', 'change_product', 'delete_product', 'add_product'
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+    permission_required = 'view_product'
 
     def post(self, request, *args, **kwargs):
         data = {}

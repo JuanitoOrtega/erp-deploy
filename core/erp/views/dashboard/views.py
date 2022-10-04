@@ -1,24 +1,18 @@
 from datetime import datetime
+from random import randint
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, DecimalField
 from django.db.models.functions import Coalesce
 from django.http import JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from core.erp.models import Sale, Product, DetSale
 
-from random import randint
-
 
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard.html'
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         request.user.get_group_session()
@@ -85,3 +79,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context['panel'] = 'Panel de administrador'
         context['graph_sales_year_month'] = self.get_graph_sales_year_month()
         return context
+
+
+def page_not_found_404(request, exception):
+    return render(request, '404.html')

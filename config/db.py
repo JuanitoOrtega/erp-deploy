@@ -15,7 +15,7 @@ POSTGRESQL = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'erp-deploy',
-        'USER': 'juanitodev',
+        'USER': 'jortega',
         # 'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',

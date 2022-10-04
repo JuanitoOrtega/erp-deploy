@@ -9,8 +9,6 @@ from django.http import HttpResponse
 from django.http import JsonResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, View
 from weasyprint import HTML, CSS
 
@@ -23,10 +21,6 @@ class SaleListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView
     model = Sale
     template_name = 'sale/list.html'
     permission_required = 'view_sale'
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         data = {}
@@ -62,10 +56,6 @@ class SaleCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Create
     success_url = reverse_lazy('erp:sale_list')
     permission_required = 'add_sale'
     url_redirect = success_url
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         data = {}
@@ -151,10 +141,6 @@ class SaleUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Update
     success_url = reverse_lazy('erp:sale_list')
     permission_required = 'change_sale'
     url_redirect = success_url
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
         instance = self.get_object()
@@ -279,7 +265,7 @@ class SaleDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Delete
         return context
 
 
-class SaleInvoicePdfView(View):
+class SaleInvoicePdfView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         try:
